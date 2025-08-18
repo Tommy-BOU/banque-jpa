@@ -18,8 +18,12 @@ public class Banque implements Serializable {
     @Column(name = "nom")
     private String nom;
 
-    @OneToMany(mappedBy = "banque")
-    private Set<Client> clients = new HashSet<>();
+    @OneToMany(mappedBy = "banque", cascade = CascadeType.ALL)
+    private Set<Client> clients;
+
+    {
+        clients = new HashSet<>();
+    }
 
     public Banque(String nom) {
         this.nom = nom;
@@ -47,5 +51,11 @@ public class Banque implements Serializable {
 
     public void setClients(Set<Client> clients) {
         this.clients = clients;
+    }
+
+    public void addClient(Client client) {
+        if (client != null) {
+            client.setBanque(this);
+        }
     }
 }

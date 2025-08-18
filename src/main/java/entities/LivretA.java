@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "livret_a")
 public class LivretA extends Compte {

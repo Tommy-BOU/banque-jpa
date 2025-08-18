@@ -75,6 +75,18 @@ public class Compte implements Serializable {
         this.clients = clients;
     }
 
+    public void addClient(Client client) {
+        if (client != null) {
+            client.addCompte(this);
+        }
+    }
+
+    public void removeClient(Client client) {
+        if (client != null) {
+            client.removeCompte(this);
+        }
+    }
+
     public Set<Operation> getOperations() {
         return operations;
     }
@@ -83,5 +95,16 @@ public class Compte implements Serializable {
         this.operations = operations;
     }
 
+    public void addOperation(Operation operation) {
+        if (operation != null) {
+            operation.setCompte(this);
+        }
+    }
+
+    public void removeOperation(Operation operation) {
+        if (operation != null) {
+            operation.setCompte(null);
+        }
+    }
 
 }

@@ -42,12 +42,11 @@ public class Client {
     public Client() {
     }
 
-    public Client(String nom, String prenom, LocalDate dateNaissance, Adresse adresse, Set<Compte> comptes) {
+    public Client(String nom, String prenom, LocalDate dateNaissance, Banque banque) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
-        this.adresse = adresse;
-        this.comptes = comptes;
+        this.banque = banque;
     }
 
     public Integer getId() {
@@ -98,11 +97,31 @@ public class Client {
         this.comptes = comptes;
     }
 
+    public void addCompte(Compte compte) {
+        if (compte != null) {
+            this.comptes.add(compte);
+            compte.getClients().add(this);
+        }
+    }
+
+    public void removeCompte(Compte compte) {
+        if (compte != null) {
+            this.comptes.remove(compte);
+            compte.getClients().remove(this);
+        }
+    }
+
     public Banque getBanque() {
         return banque;
     }
 
     public void setBanque(Banque banque) {
+        if (this.banque != null) {
+            this.banque.getClients().remove(this);
+        }
         this.banque = banque;
+        if (this.banque != null) {
+            this.banque.getClients().add(this);
+        }
     }
 }

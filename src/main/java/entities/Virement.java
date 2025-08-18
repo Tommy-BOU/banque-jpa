@@ -18,8 +18,8 @@ public class Virement extends Operation {
         super();
     }
 
-    public Virement(LocalDate date, double montant, String motif, String beneficiaire) {
-        super(date, montant, motif);
+    public Virement(LocalDate date, double montant, String motif, String beneficiaire, Compte compte) {
+        super(date, montant, motif, compte);
         this.beneficiaire = beneficiaire;
     }
 

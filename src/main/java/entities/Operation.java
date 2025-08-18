@@ -32,10 +32,11 @@ public class Operation implements Serializable {
     public Operation() {
     }
 
-    public Operation(LocalDate date, double montant, String motif) {
+    public Operation(LocalDate date, double montant, String motif, Compte compte) {
         this.date = date;
         this.montant = montant;
         this.motif = motif;
+        this.compte = compte;
     }
 
     public Integer getId() {
@@ -75,6 +76,12 @@ public class Operation implements Serializable {
     }
 
     public void setCompte(Compte compte) {
+        if (this.compte != null) {
+            this.compte.getOperations().remove(this);
+        }
         this.compte = compte;
+        if (this.compte != null) {
+            this.compte.addOperation(this);
+        }
     }
 }
