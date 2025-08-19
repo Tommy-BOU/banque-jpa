@@ -1,7 +1,6 @@
 package entities;
 
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,12 +21,10 @@ public class Compte implements Serializable {
     @Column(name = "solde")
     private double solde;
 
-    @ManyToMany
-    @JoinTable(name = "compte_client", joinColumns = @JoinColumn(name = "id_compte"), inverseJoinColumns = @JoinColumn(name = "id_client"))
+    @ManyToMany(mappedBy = "comptes",cascade = CascadeType.ALL)
     private Set<Client> clients;
 
-    @OneToMany
-    @JoinColumn(name = "id_compte")
+    @OneToMany(mappedBy = "compte", cascade = CascadeType.ALL)
     private Set<Operation> operations;
 
     {

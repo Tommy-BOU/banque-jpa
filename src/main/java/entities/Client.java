@@ -27,7 +27,7 @@ public class Client {
     @Embedded
     private Adresse adresse;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "compte_client", joinColumns = @JoinColumn(name = "id_client"), inverseJoinColumns = @JoinColumn(name = "id_compte"))
     private Set<Compte> comptes;
 
