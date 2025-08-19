@@ -4,7 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class Adresse {
+public class Adresse implements java.io.Serializable {
     @Column(name = "numero")
     private Integer numero;
 
